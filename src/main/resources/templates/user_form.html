@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"  />
+</head>
+<body>
+<div class="container-fluid">
+    <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
+
+    <form th:action="@{/users/save}" method="post" th:object="${user}"
+    style="max-width: 500px;margin: 0 auto;">
+        <input type="hidden" th:field="*{id}">
+        <div class="border border-secondary rounded p3 ">
+            <div class="row g-3 align-items-center mt-2 me-1 mb-2">
+                <div class="col-4 ms-2">
+                    <label class="form-label">Email</label>
+                </div>
+                <div class="col">
+                    <input type="email" class="form-control" th:field="*{email}" required minlength="8" maxlength="45">
+                </div>
+            </div>
+            <div class="row g-3 align-items-center me-1 mb-2">
+                <div class="col-4 ms-2">
+                    <label class="form-label">First Name</label>
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control" th:field="*{firstname}" required minlength="2" maxlength="45">
+                </div>
+            </div>
+            <div class="row g-3 align-items-center me-1 mb-2">
+                <div class="col-4 ms-2">
+                    <label class="form-label">Last Name</label>
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control" th:field="*{lastname}" required minlength="2" maxlength="45">
+                </div>
+            </div>
+            <div class="row g-3 align-items-center me-1 mb-2">
+                <div class="col-4 ms-2">
+                    <label class="form-label">Password</label>
+                </div>
+                <div class="col">
+                    <input type="password" class="form-control" th:field="*{password}" required minlength="8" maxlength="15">
+                </div>
+            </div>
+            <div class="row g-3 align-items-center me-1 mb-2">
+                <div class="col-4 ms-2">
+                    <label class="form-label">Enabled:</label>
+                </div>
+                <div class="col">
+                    <input type="checkbox" th:field="*{enabled}">
+                </div>
+            </div>
+            <div class="text-center mb-2">
+                <button type="submit" class="btn btn-primary" >Save</button>
+                <button type="button" class="btn btn-secondary" onclick="cancelForm()">Cancel</button>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+<script type="text/javascript">
+    function cancelForm(){
+        window.location="[[@{/users}]]";
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"  />
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div><h2>Manage Users</h2></div>
+    <div class="m-3">
+        <a class="h3 text-decoration-none" th:href="@{/users/new}" >Add new User</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+
+
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>EMAIL</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>ENABLED</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="user : ${listUsers}">
+                <tr>
+                    <td>[[${user.id}]]</td>
+                    <td>[[${user.email}]]</td>
+                    <td>[[${user.firstname}]]</td>
+                    <td>[[${user.lastname}]]</td>
+                    <td>[[${user.enabled}]]</td>
+                    <td>
+                        <a class="h4 me-3 text-decoration-none" th:href="@{'/users/edit/'+${user.getId()}} ">Edit</a>
+                        <a class="h4 text-decoration-none" th:href="@{'/users/delete/'+${user.getId()}}">Delete</a>
+                    </td>
+                </tr>
+
+            </th:block>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
